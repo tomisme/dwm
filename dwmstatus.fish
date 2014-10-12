@@ -6,11 +6,9 @@ while true
   set dwm_wifi [(iwgetid -r)]
 
   if test (cat /sys/class/power_supply/AC/online) = 1
-    set dwm_power_symbol [+]
-    set dwm_power_time ''
+    set dwm_power_status [+]
   else
-    set dwm_power_symbol [-]
-    set dwm_power_time [(acpi | grep -Eo '(:?[0-9]+){3}' | cut -c 1-5)]
+    set dwm_power_status [(acpi | grep -Eo '(:?[0-9]+){3}' | cut -c 1-5)]
   end
 
   set dwm_power_percent [(acpi | grep -Eo '[0-9]+%')]
@@ -19,7 +17,7 @@ while true
 
   set dwm_clock (date '+%a %d %b | %R')
 
-  xsetroot -name "WiFi: $dwm_wifi | Power: $dwm_power_symbol$dwm_power_percent$dwm_power_time | Vol: $dwm_vol| $dwm_clock"
+  xsetroot -name "WiFi: $dwm_wifi | Power: $dwm_power_status$dwm_power_percent | Vol: $dwm_vol| $dwm_clock"
   sleep 1;
   
 end
