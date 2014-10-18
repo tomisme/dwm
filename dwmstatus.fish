@@ -2,7 +2,6 @@
 
 while true
 
-  # set dwm_wifi (cat /proc/net/wireless) | awk something??
   set dwm_wifi [(iwgetid -r)]
 
   if test (cat /sys/class/power_supply/AC/online) = 1
@@ -17,7 +16,7 @@ while true
 
   set dwm_clock (date '+%a %d %b | %R')
 
-  xsetroot -name "WiFi: $dwm_wifi | Power: $dwm_power_status$dwm_power_percent | Vol: $dwm_vol| $dwm_clock"
+  xsetroot -name "$dwm_wifi $dwm_power_status$dwm_power_percent $dwm_vol$dwm_clock"
   sleep 1;
   
 end
