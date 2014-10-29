@@ -15,27 +15,29 @@ while true
     set _power_charging [+]
   else
     set _power_charging [(acpi | grep -Eo '(:?[0-9]+){3}' | cut -c 1-5)]
+
+    if math "$_power < 25" > /dev/null
+
+      if math "$_power < 5" > /dev/null
+        if math "$_suspended == 0" > /dev/null
+          set _suspended 1
+          systemctl suspend
+        end
+      end
+
+      if math "$_notified_low_power == 0" > /dev/null
+        set _notified_low_power 1
+        notify-send -u critical "Low Battery (25%)"
+      end
+
+    else
+      set _notified_low_power 0
+      set _suspended 0
+    end
+
   end
 
   xsetroot -name "$_wifi $_power_charging$_power_percent $_vol$_clock"
-
-  if math "$_power < 25" > /dev/null
-    if math "$_notified_low_power == 0" > /dev/null
-      set _notified_low_power 1
-      notify-send -u critical "Low Battery (25%)"
-    end
-  else
-    set _notified_low_power 0
-  end
-
-  if math "$_power < 10" > /dev/null
-    if math "$_suspended == 0" > /dev/null
-      set _suspended 1
-      systemctl suspend
-    end
-  else
-    set _suspended 0
-  end
 
   sleep 1;
 end

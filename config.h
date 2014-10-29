@@ -5,7 +5,7 @@ static const char font[]            = "-*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#000000";
 static const char normbgcolor[]     = "#07093D";
 static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#107FC9";
+static const char selbordercolor[]  = "#03EF1E";
 static const char selbgcolor[]      = "#0E4EAD";
 static const char selfgcolor[]      = "#eeeeee";
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -32,8 +32,8 @@ static const Bool resizehints = True; /* True means respect size hints in tiled 
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[T]",      tile },    /* first entry is default */
-	{ "[F]",      NULL },    /* no layout function means floating behavior */
+	{ "[]=",      tile },    /* first entry is default */
+	{ "<><",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
